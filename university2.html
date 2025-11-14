@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashoka Institute - Excellence Through Innovation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #f093fb;
+            --secondary-color: #f5576c;
+            --accent-color: #667eea;
+            --text-dark: #2d3748;
+            --text-light: #f7fafc;
+            --border-color: #e2e8f0;
+            --success-color: #48bb78;
+            --error-color: #f56565;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #f7fafc;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--text-light);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: opacity 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--text-light);
+            padding: 4rem 1rem;
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 3rem 1rem;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--text-dark);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 6px rgba(240, 147, 251, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(240, 147, 251, 0.6);
+        }
+
+        .btn-secondary {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        /* Overview Section */
+        .overview {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-radius: 8px;
+        }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Courses Section */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .course-detail {
+            margin: 0.8rem 0;
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .course-detail strong {
+            color: var(--text-dark);
+        }
+
+        /* Facilities Section */
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .facility-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .facility-card h3 {
+            margin: 1rem 0;
+            color: var(--primary-color);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 85vh;
+            overflow-y: auto;
+            animation: slideIn 0.3s;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            color: var(--primary-color);
+        }
+
+        .close-btn {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            background: none;
+            border: none;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: var(--text-dark);
+        }
+
+        .modal-body {
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .fee-item {
+            padding: 1rem;
+            margin: 1rem 0;
+            background: #f7fafc;
+            border-radius: 5px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .fee-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Form Styles */
+        .form-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(240, 147, 251, 0.1);
+        }
+
+        .form-group.checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-group.checkbox input {
+            width: auto;
+            margin: 0;
+        }
+
+        .form-group.checkbox label {
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            animation: slideIn 0.3s;
+        }
+
+        .alert-success {
+            background-color: #c6f6d5;
+            color: #22543d;
+            border-left: 4px solid var(--success-color);
+        }
+
+        .alert-error {
+            background-color: #fed7d7;
+            color: #742a2a;
+            border-left: 4px solid var(--error-color);
+        }
+
+        /* Placements Section */
+        .placements-highlight {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .placement-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .placement-card h3 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .placement-card p {
+            color: #666;
+        }
+
+        /* Recruiters */
+        .recruiters-list {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .recruiter-badge {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--text-light);
+            padding: 2rem 1rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .footer-content h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .footer-content a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-content a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #555;
+            padding-top: 1rem;
+            text-align: center;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            .modal-content {
+                margin: 10% auto;
+                width: 95%;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-section {
+                padding: 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 0.95rem;
+            }
+
+            header {
+                padding: 0.75rem 0;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                padding: 2rem 0.5rem;
+                min-height: 300px;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 0.95rem;
+            }
+
+            .btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            section {
+                padding: 1.5rem 0.5rem;
+            }
+
+            section h2 {
+                font-size: 1.3rem;
+            }
+
+            .form-section {
+                padding: 1rem;
+            }
+
+            .modal-content {
+                padding: 1.5rem;
+                margin: 20% auto;
+            }
+
+            .placement-card h3 {
+                font-size: 1.5rem;
+            }
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .spinner {
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">🏛️ AIAS</a></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="university1.html">Jamia Nalande University</a></li>
+                <li><a href="university2.html">Ashoka Institute</a></li>
+                <li><a href="#overview">About</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#placements">Placements</a></li>
+                <li><a href="#facilities">Facilities</a></li>
+                <li><a href="#apply">Apply</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Ashoka Institute of Advanced Studies</h1>
+            <p>Excellence Through Innovation</p>
+            <p style="font-size: 1rem; margin-bottom: 1.5rem;">Premier Educational Excellence in Bangalore</p>
+            <div class="hero-buttons">
+                <a href="#apply" class="btn btn-primary">Apply Now</a>
+                <a href="#courses" class="btn btn-outline">Explore Courses</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Overview Section -->
+        <section id="overview">
+            <h2>Why Choose Ashoka Institute?</h2>
+            <div class="overview">
+                <p>Ashoka Institute is a leading private university committed to producing graduates who are
+                    intellectually rigorous, ethically grounded, and socially responsible. Our curriculum blends
+                    theoretical knowledge with practical skills.</p>
+                <div class="stats">
+                    <div class="stat-card">
+                        <h3>8,500+</h3>
+                        <p>Students</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>650+</h3>
+                        <p>Faculty Members</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>NAAC A</h3>
+                        <p>Accredited</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Courses Section -->
+        <section id="courses">
+            <h2>Our Courses</h2>
+            <div class="courses-grid" id="coursesContainer">
+                <!-- Loaded from API -->
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn btn-primary" onclick="openFeesModal()">Check Course-wise Fees</button>
+            </div>
+        </section>
+
+        <!-- Placements Section -->
+        <section id="placements">
+            <h2>Placement Statistics</h2>
+            <div class="placements-highlight">
+                <div class="placement-card">
+                    <h3>94%</h3>
+                    <p>Placement Rate</p>
+                </div>
+                <div class="placement-card">
+                    <h3>₹8.2 LPA</h3>
+                    <p>Average Package</p>
+                </div>
+                <div class="placement-card">
+                    <h3>₹28 LPA</h3>
+                    <p>Highest Package</p>
+                </div>
+            </div>
+            <div>
+                <h3 style="text-align: center; margin: 2rem 0 1rem;">Top Recruiters</h3>
+                <div class="recruiters-list" id="recruitersContainer">
+                    <!-- Loaded from API -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Facilities Section -->
+        <section id="facilities">
+            <h2>Campus Facilities</h2>
+            <div class="facilities-grid" id="facilitiesContainer">
+                <!-- Loaded from API -->
+            </div>
+        </section>
+
+        <!-- Lead Form Section -->
+        <section id="apply" class="form-section">
+            <h2>Apply Now</h2>
+            <div id="alertContainer"></div>
+            <form id="leadForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number (10-digit) *</label>
+                    <input type="tel" id="phone" name="phone" placeholder="9876543210" required pattern="[6-9]\d{9}">
+                </div>
+
+                <div class="form-group">
+                    <label for="state">State *</label>
+                    <select id="state" name="state" required>
+                        <option value="">Select your state</option>
+                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                        <option value="Assam">Assam</option>
+                        <option value="Bihar">Bihar</option>
+                        <option value="Chhattisgarh">Chhattisgarh</option>
+                        <option value="Goa">Goa</option>
+                        <option value="Gujarat">Gujarat</option>
+                        <option value="Haryana">Haryana</option>
+                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+                        <option value="Jharkhand">Jharkhand</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Manipur">Manipur</option>
+                        <option value="Meghalaya">Meghalaya</option>
+                        <option value="Mizoram">Mizoram</option>
+                        <option value="Nagaland">Nagaland</option>
+                        <option value="Odisha">Odisha</option>
+                        <option value="Punjab">Punjab</option>
+                        <option value="Rajasthan">Rajasthan</option>
+                        <option value="Sikkim">Sikkim</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Telangana">Telangana</option>
+                        <option value="Tripura">Tripura</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option value="Uttarakhand">Uttarakhand</option>
+                        <option value="West Bengal">West Bengal</option>
+                        <option value="Delhi">Delhi</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="courseInterested">Course Interested *</label>
+                    <select id="courseInterested" name="courseInterested" required>
+                        <option value="">Select a course</option>
+                        <option value="B.Tech - Electronics & Communication Engineering">B.Tech - ECE</option>
+                        <option value="B.Tech - Biotechnology">B.Tech - Biotechnology</option>
+                        <option value="B.C.A. - Computer Applications">B.C.A. - Computer Applications</option>
+                        <option value="M.A. - Data Science">M.A. - Data Science</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="intakeYear">Intake Year *</label>
+                    <select id="intakeYear" name="intakeYear" required>
+                        <option value="">Select intake year</option>
+                        <option value="2025">February 2025</option>
+                        <option value="2025">August 2025</option>
+                        <option value="2026">February 2026</option>
+                        <option value="2026">August 2026</option>
+                    </select>
+                </div>
+
+                <div class="form-group checkbox">
+                    <input type="checkbox" id="consent" name="consent" required>
+                    <label for="consent">I consent to receive communications from AIAS regarding my application</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Application</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- Fees Modal -->
+    <div id="feesModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Course-wise Fees</h2>
+                <button class="close-btn" onclick="closeFeesModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="feesModalBody">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading fees...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h3>About AIAS</h3>
+                <p>A leading private university committed to academic excellence and innovation.</p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <a href="#overview">About</a>
+                <a href="#courses">Courses</a>
+                <a href="#placements">Placements</a>
+                <a href="#apply">Apply</a>
+            </div>
+            <div>
+                <h3>Contact</h3>
+                <p>Email: admissions@aias.edu.in</p>
+                <p>Phone: +91-80-4141-4141</p>
+                <p>Location: Bangalore, India</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Ashoka Institute of Advanced Studies. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const API_BASE = '/api';
+        const UNI_ID = 'ashoka';
+
+        // Load initial data
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadCourses();
+            await loadFacilities();
+            await loadPlacementData();
+            setupFormListener();
+        });
+
+        // Load courses
+        async function loadCourses() {
+            try {
+                const response = await fetch(`${API_BASE}/universities/${UNI_ID}/courses`);
+                const data = await response.json();
+
+                const container = document.getElementById('coursesContainer');
+                container.innerHTML = data.data.map(course => `
+                    <div class="course-card">
+                        <h3>${course.name}</h3>
+                        <div class="course-detail"><strong>Duration:</strong> ${course.duration}</div>
+                        <div class="course-detail"><strong>Fees:</strong> ₹${course.fees.min.toLocaleString()} - ₹${course.fees.max.toLocaleString()} per year</div>
+                        <div class="course-detail"><strong>Eligibility:</strong> ${course.eligibility}</div>
+                        <div class="course-detail"><strong>Placement:</strong> ${course.placements}</div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading courses:', error);
+            }
+        }
+
+        // Load facilities
+        async function loadFacilities() {
+            try {
+                const response = await fetch(`${API_BASE}/universities/${UNI_ID}/facilities`);
+                const data = await response.json();
+
+                const container = document.getElementById('facilitiesContainer');
+                container.innerHTML = data.data.map(facility => `
+                    <div class="facility-card">
+                        <h3>${facility.name}</h3>
+                        <p>${facility.description}</p>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading facilities:', error);
+            }
+        }
+
+        // Load placement data
+        async function loadPlacementData() {
+            try {
+                const response = await fetch(`${API_BASE}/universities/${UNI_ID}/placements`);
+                const data = await response.json();
+
+                const container = document.getElementById('recruitersContainer');
+                container.innerHTML = data.data.topRecruiters.map(recruiter => `
+                    <span class="recruiter-badge">${recruiter}</span>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading placements:', error);
+            }
+        }
+
+        // Open fees modal
+        async function openFeesModal() {
+            const modal = document.getElementById('feesModal');
+            const body = document.getElementById('feesModalBody');
+            body.innerHTML = '<div class="loading"><div class="spinner"></div><p>Loading fees...</p></div>';
+            modal.style.display = 'block';
+
+            try {
+                const response = await fetch(`${API_BASE}/universities/${UNI_ID}/fees`);
+                const data = await response.json();
+
+                body.innerHTML = data.data.map(course => `
+                    <div class="fee-item">
+                        <h4>${course.name}</h4>
+                        <p><strong>Duration:</strong> ${course.duration}</p>
+                        <p><strong>Fee Range:</strong> ${course.feeRange}</p>
+                        <p><strong>Total for Duration:</strong> ${course.fourYearTotal}</p>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading fees:', error);
+                body.innerHTML = '<p style="color: var(--error-color);">Error loading fees. Please try again.</p>';
+            }
+        }
+
+        // Close fees modal
+        function closeFeesModal() {
+            document.getElementById('feesModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function (event) {
+            const modal = document.getElementById('feesModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Setup form listener
+        function setupFormListener() {
+            document.getElementById('leadForm').addEventListener('submit', submitForm);
+        }
+
+        // Submit form
+        async function submitForm(e) {
+            e.preventDefault();
+
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                state: document.getElementById('state').value,
+                courseInterested: document.getElementById('courseInterested').value,
+                intakeYear: document.getElementById('intakeYear').value,
+                consent: document.getElementById('consent').checked
+            };
+
+            try {
+                const response = await fetch(`${API_BASE}/leads/submit`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+                const alertContainer = document.getElementById('alertContainer');
+
+                if (result.success) {
+                    alertContainer.innerHTML = `
+                        <div class="alert alert-success">
+                            ✓ ${result.message}
+                        </div>
+                    `;
+                    document.getElementById('leadForm').reset();
+                    setTimeout(() => {
+                        alertContainer.innerHTML = '';
+                    }, 5000);
+                } else {
+                    alertContainer.innerHTML = `
+                        <div class="alert alert-error">
+                            ✗ ${result.message}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                document.getElementById('alertContainer').innerHTML = `
+                    <div class="alert alert-error">
+                        ✗ Error submitting form. Please try again.
+                    </div>
+                `;
+            }
+        }
+
+        // Scroll behavior for smooth navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

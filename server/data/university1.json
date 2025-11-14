@@ -1,0 +1,120 @@
+{
+    "university": {
+        "id": "jnu",
+        "name": "Jamia Nalande University",
+        "shortName": "JNU",
+        "tagline": "Empowering Minds, Shaping Futures",
+        "location": "New Delhi, India",
+        "established": 2005,
+        "logo": "🎓",
+        "heroImage": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        "overview": {
+            "description": "Jamia Nalande University is a premier institution dedicated to academic excellence and holistic development. With state-of-the-art infrastructure and world-class faculty, we nurture innovation and leadership.",
+            "studentCount": "12,000+",
+            "facultyCount": "800+",
+            "accreditation": "NAAC A+ Accredited"
+        },
+        "courses": [
+            {
+                "id": "btech-cse",
+                "name": "B.Tech - Computer Science & Engineering",
+                "duration": "4 Years",
+                "fees": {
+                    "min": 350000,
+                    "max": 450000,
+                    "perYear": true
+                },
+                "eligibility": "12th Pass with PCM (75% aggregate)",
+                "placements": "95% average package ₹8 LPA"
+            },
+            {
+                "id": "btech-mech",
+                "name": "B.Tech - Mechanical Engineering",
+                "duration": "4 Years",
+                "fees": {
+                    "min": 320000,
+                    "max": 420000,
+                    "perYear": true
+                },
+                "eligibility": "12th Pass with PCM (70% aggregate)",
+                "placements": "92% average package ₹7.2 LPA"
+            },
+            {
+                "id": "ba-economics",
+                "name": "B.A. - Economics",
+                "duration": "3 Years",
+                "fees": {
+                    "min": 120000,
+                    "max": 180000,
+                    "perYear": true
+                },
+                "eligibility": "12th Pass (Any Stream)",
+                "placements": "85% average package ₹4 LPA"
+            },
+            {
+                "id": "mba",
+                "name": "MBA - Business Administration",
+                "duration": "2 Years",
+                "fees": {
+                    "min": 450000,
+                    "max": 650000,
+                    "perYear": true
+                },
+                "eligibility": "Bachelor's degree + CAT/MAT",
+                "placements": "98% average package ₹12 LPA"
+            }
+        ],
+        "placements": {
+            "averagePackage": "₹7.8 LPA",
+            "highestPackage": "₹24 LPA",
+            "placementRate": "95%",
+            "topRecruiters": [
+                "Google",
+                "Microsoft",
+                "Amazon",
+                "TCS",
+                "Infosys",
+                "Deloitte",
+                "Goldman Sachs",
+                "Accenture"
+            ]
+        },
+        "facilities": [
+            {
+                "name": "Library",
+                "description": "State-of-the-art digital library with 500,000+ books and journals"
+            },
+            {
+                "name": "Laboratories",
+                "description": "Advanced research labs with cutting-edge equipment"
+            },
+            {
+                "name": "Hostel",
+                "description": "Comfortable accommodation for 5,000+ students"
+            },
+            {
+                "name": "Sports Complex",
+                "description": "Olympic-size swimming pool, gym, and sports grounds"
+            },
+            {
+                "name": "Cafeteria",
+                "description": "Multi-cuisine dining with nutritious food options"
+            },
+            {
+                "name": "Medical Center",
+                "description": "24/7 medical facilities with experienced doctors"
+            }
+        ],
+        "intakeMonths": [
+            "January",
+            "July"
+        ],
+        "admissionProcess": [
+            "Fill Online Application",
+            "Submit Documents",
+            "Entrance Exam (if applicable)",
+            "Interview/Counseling",
+            "Fee Payment & Enrollment"
+        ]
+    }
+}

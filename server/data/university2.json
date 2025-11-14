@@ -1,0 +1,120 @@
+{
+    "university": {
+        "id": "ashoka",
+        "name": "Ashoka Institute of Advanced Studies",
+        "shortName": "AIAS",
+        "tagline": "Excellence Through Innovation",
+        "location": "Bangalore, India",
+        "established": 2008,
+        "logo": "🏛️",
+        "heroImage": "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+        "overview": {
+            "description": "Ashoka Institute is a leading private university committed to producing graduates who are intellectually rigorous, ethically grounded, and socially responsible. Our curriculum blends theoretical knowledge with practical skills.",
+            "studentCount": "8,500+",
+            "facultyCount": "650+",
+            "accreditation": "NAAC A Accredited"
+        },
+        "courses": [
+            {
+                "id": "btech-ece",
+                "name": "B.Tech - Electronics & Communication Engineering",
+                "duration": "4 Years",
+                "fees": {
+                    "min": 360000,
+                    "max": 480000,
+                    "perYear": true
+                },
+                "eligibility": "12th Pass with PCM (75% aggregate)",
+                "placements": "93% average package ₹7.8 LPA"
+            },
+            {
+                "id": "btech-biotech",
+                "name": "B.Tech - Biotechnology",
+                "duration": "4 Years",
+                "fees": {
+                    "min": 340000,
+                    "max": 450000,
+                    "perYear": true
+                },
+                "eligibility": "12th Pass with PCB (72% aggregate)",
+                "placements": "88% average package ₹6.5 LPA"
+            },
+            {
+                "id": "bca",
+                "name": "B.C.A. - Computer Applications",
+                "duration": "3 Years",
+                "fees": {
+                    "min": 150000,
+                    "max": 220000,
+                    "perYear": true
+                },
+                "eligibility": "12th Pass (Any Stream)",
+                "placements": "90% average package ₹5 LPA"
+            },
+            {
+                "id": "mas-data-science",
+                "name": "M.A. - Data Science",
+                "duration": "2 Years",
+                "fees": {
+                    "min": 500000,
+                    "max": 750000,
+                    "perYear": true
+                },
+                "eligibility": "Bachelor's degree in Science/Engineering",
+                "placements": "96% average package ₹14 LPA"
+            }
+        ],
+        "placements": {
+            "averagePackage": "₹8.2 LPA",
+            "highestPackage": "₹28 LPA",
+            "placementRate": "94%",
+            "topRecruiters": [
+                "Cisco",
+                "IBM",
+                "Oracle",
+                "Flipkart",
+                "Unilever",
+                "KPMG",
+                "PWC",
+                "Wipro"
+            ]
+        },
+        "facilities": [
+            {
+                "name": "Research Park",
+                "description": "State-of-the-art research facilities with industry partnerships"
+            },
+            {
+                "name": "Tech Hub",
+                "description": "Innovation center with incubation programs"
+            },
+            {
+                "name": "Auditorium",
+                "description": "5,000-seater auditorium with advanced AV systems"
+            },
+            {
+                "name": "Student Center",
+                "description": "Recreation and co-curricular activity hub"
+            },
+            {
+                "name": "Eco-Campus",
+                "description": "Green campus with solar power and rainwater harvesting"
+            },
+            {
+                "name": "International Office",
+                "description": "Exchange programs with 50+ partner universities worldwide"
+            }
+        ],
+        "intakeMonths": [
+            "February",
+            "August"
+        ],
+        "admissionProcess": [
+            "Register on Portal",
+            "Take Entrance Assessment",
+            "Submit Required Documents",
+            "Personal Interview",
+            "Offer Letter & Enrollment"
+        ]
+    }
+}

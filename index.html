@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Enrollment Platform</title>
+    <!-- Google Fonts for modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --text-dark: #2d3748;
+            --text-light: #f7fafc;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            padding: 2rem 2.5vw;
+            animation: fadeIn 1.2s cubic-bezier(.39, .575, .565, 1) both;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: slideDown 1s 0.2s cubic-bezier(.39, .575, .565, 1) both;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .universities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .university-card {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.13);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            animation: fadeUp 1s cubic-bezier(.39, .575, .565, 1) both;
+        }
+
+        .university-card:hover {
+            transform: translateY(-14px) scale(1.03);
+            box-shadow: 0 24px 48px rgba(102, 126, 234, 0.18), 0 2px 8px rgba(0, 0, 0, 0.07);
+        }
+
+        .card-header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid #ececec;
+        }
+
+        .card-header.jnu {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .card-header.ashoka {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .card-header h2 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-header .icon {
+            font-size: 3.2rem;
+            margin-bottom: 0.5rem;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.08));
+            animation: popIn 0.7s cubic-bezier(.39, .575, .565, 1) both;
+        }
+
+        .card-header p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            animation: fadeIn 1.2s 0.2s cubic-bezier(.39, .575, .565, 1) both;
+        }
+
+        .card-body h3 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .card-body ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-body li {
+            padding: 0.5rem 0;
+            color: #555;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .card-body li:last-child {
+            border-bottom: none;
+        }
+
+        .card-body li:before {
+            content: "✓ ";
+            color: #48bb78;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .card-footer {
+            padding: 1.5rem;
+            background: #f7fafc;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            transition: all 0.3s cubic-bezier(.39, .575, .565, 1);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.08);
+        }
+
+        .btn-jnu {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.18);
+        }
+
+        .btn-jnu:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.25);
+            background: linear-gradient(135deg, #5a67d8 0%, #6b21a8 100%);
+        }
+
+        .btn-ashoka {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            box-shadow: 0 2px 8px rgba(240, 147, 251, 0.18);
+        }
+
+        .btn-ashoka:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 8px 24px rgba(240, 147, 251, 0.25);
+            background: linear-gradient(135deg, #e040fb 0%, #f5576c 100%);
+        }
+
+        .info-section {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
+            margin-top: 2rem;
+            animation: fadeIn 1.2s 0.4s cubic-bezier(.39, .575, .565, 1) both;
+        }
+
+        .info-section h2 {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .info-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(247, 250, 252, 0.95);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-color);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.07);
+            transition: transform 0.3s cubic-bezier(.39, .575, .565, 1), box-shadow 0.3s;
+            animation: fadeUp 1s 0.2s cubic-bezier(.39, .575, .565, 1) both;
+        }
+
+        .info-card:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.13);
+        }
+
+        .info-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .info-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .api-section {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
+            margin-top: 2rem;
+            animation: fadeIn 1.2s 0.6s cubic-bezier(.39, .575, .565, 1) both;
+        }
+
+        .api-section h2 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .api-endpoints {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .endpoint {
+            background: rgba(247, 250, 252, 0.97);
+            padding: 1rem;
+            border-radius: 7px;
+            border-left: 3px solid var(--primary-color);
+            font-family: 'Courier New', monospace;
+            font-size: 0.97rem;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .endpoint:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.13);
+        }
+
+        .endpoint strong {
+            color: var(--primary-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: #666;
+            margin-top: 3rem;
+            font-size: 1.05rem;
+            animation: fadeIn 1.2s 0.8s cubic-bezier(.39, .575, .565, 1) both;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 1rem 0.5vw;
+            }
+
+            .universities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.7);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .api-description {
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+
+        .api-note {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #e6f7ff;
+            border-radius: 5px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .footer-subtitle {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🎓 University Enrollment Platform</h1>
+            <p>Discover premium educational institutions and apply now</p>
+        </div>
+
+        <!-- Universities Grid -->
+        <div class="universities-grid">
+            <!-- Jamia Nalande University -->
+            <div class="university-card">
+                <div class="card-header jnu">
+                    <div class="icon">🎓</div>
+                    <h2>Jamia Nalande University</h2>
+                    <p>New Delhi, India</p>
+                </div>
+                <div class="card-body">
+                    <h3>Key Highlights</h3>
+                    <ul>
+                        <li>12,000+ Students</li>
+                        <li>800+ Faculty Members</li>
+                        <li>NAAC A+ Accredited</li>
+                        <li>95% Placement Rate</li>
+                        <li>₹7.8 LPA Average Package</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="university1.html" class="btn btn-jnu">Explore & Apply →</a>
+                </div>
+            </div>
+
+            <!-- Ashoka Institute -->
+            <div class="university-card">
+                <div class="card-header ashoka">
+                    <div class="icon">🏛️</div>
+                    <h2>Ashoka Institute</h2>
+                    <p>Bangalore, India</p>
+                </div>
+                <div class="card-body">
+                    <h3>Key Highlights</h3>
+                    <ul>
+                        <li>8,500+ Students</li>
+                        <li>650+ Faculty Members</li>
+                        <li>NAAC A Accredited</li>
+                        <li>94% Placement Rate</li>
+                        <li>₹8.2 LPA Average Package</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="university2.html" class="btn btn-ashoka">Explore & Apply →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="info-section">
+            <h2>✨ Platform Features</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>📋 Complete Information</h3>
+                    <p>Access detailed course information, fees, placements, and campus facilities</p>
+                </div>
+                <div class="info-card">
+                    <h3>💰 Fee Calculator</h3>
+                    <p>View course-wise fee structure in an easy-to-understand modal format</p>
+                </div>
+                <div class="info-card">
+                    <h3>📱 Mobile Friendly</h3>
+                    <p>Fully responsive design works seamlessly on all devices</p>
+                </div>
+                <div class="info-card">
+                    <h3>🔒 Secure Forms</h3>
+                    <p>Lead forms with validation and data protection</p>
+                </div>
+                <div class="info-card">
+                    <h3>🚀 REST APIs</h3>
+                    <p>Powerful APIs returning JSON data for integrations</p>
+                </div>
+                <div class="info-card">
+                    <h3>🔗 Pipedream Integration</h3>
+                    <p>Automated workflow for lead processing and CRM sync</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- API Documentation -->
+        <div class="api-section">
+            <h2>🔌 REST API Endpoints</h2>
+            <p class="api-description">All endpoints return JSON responses. Base URL:
+                <code>/api</code>
+            </p>
+            <div class="api-endpoints">
+                <div class="endpoint">
+                    <strong>GET</strong> /universities<br>
+                    List all universities
+                </div>
+                <div class="endpoint">
+                    <strong>GET</strong> /universities/{uniId}/courses<br>
+                    Get courses for a university
+                </div>
+                <div class="endpoint">
+                    <strong>GET</strong> /universities/{uniId}/fees<br>
+                    Get course-wise fees
+                </div>
+                <div class="endpoint">
+                    <strong>GET</strong> /universities/{uniId}/placements<br>
+                    Get placement statistics
+                </div>
+                <div class="endpoint">
+                    <strong>GET</strong> /universities/{uniId}/facilities<br>
+                    Get campus facilities
+                </div>
+                <div class="endpoint">
+                    <strong>POST</strong> /leads/submit<br>
+                    Submit a lead form
+                </div>
+                <div class="endpoint">
+                    <strong>GET</strong> /leads<br>
+                    Retrieve all leads (admin)
+                </div>
+                <div class="endpoint">
+                    <strong>GET</strong> /health<br>
+                    Server health check
+                </div>
+            </div>
+            <div class="api-note">
+                <p><strong>📖 UNI IDs:</strong> Use <code>jnu</code> for Jamia Nalande or <code>ashoka</code> for Ashoka
+                    Institute</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2024 University Enrollment Platform. All rights reserved.</p>
+            <p class="footer-subtitle">Built with Node.js, Express, and modern web technologies</p>
+        </footer>
+    </div>
+</body>
+</html>
