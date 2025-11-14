@@ -934,7 +934,9 @@
     </footer>
 
     <script>
-        const API_BASE = '/api';
+        // Detect static hosting (GitHub Pages) and set API base / fallbacks
+        const IS_STATIC = location.hostname.endsWith('github.io');
+        const API_BASE = IS_STATIC ? '' : '/api';
         const UNI_ID = 'ashoka';
 
         // Load initial data
@@ -948,8 +950,15 @@
         // Load courses
         async function loadCourses() {
             try {
-                const response = await fetch(`${API_BASE}/universities/${UNI_ID}/courses`);
-                const data = await response.json();
+                let data;
+                if (IS_STATIC) {
+                    const res = await fetch('public/data/university2.json');
+                    const json = await res.json();
+                    data = { data: json.university.courses };
+                } else {
+                    const response = await fetch(`${API_BASE}/universities/${UNI_ID}/courses`);
+                    data = await response.json();
+                }
 
                 const container = document.getElementById('coursesContainer');
                 container.innerHTML = data.data.map(course => `
@@ -969,8 +978,15 @@
         // Load facilities
         async function loadFacilities() {
             try {
-                const response = await fetch(`${API_BASE}/universities/${UNI_ID}/facilities`);
-                const data = await response.json();
+                let data;
+                if (IS_STATIC) {
+                    const res = await fetch('public/data/university2.json');
+                    const json = await res.json();
+                    data = { data: json.university.facilities };
+                } else {
+                    const response = await fetch(`${API_BASE}/universities/${UNI_ID}/facilities`);
+                    data = await response.json();
+                }
 
                 const container = document.getElementById('facilitiesContainer');
                 container.innerHTML = data.data.map(facility => `
@@ -987,8 +1003,15 @@
         // Load placement data
         async function loadPlacementData() {
             try {
-                const response = await fetch(`${API_BASE}/universities/${UNI_ID}/placements`);
-                const data = await response.json();
+                let data;
+                if (IS_STATIC) {
+                    const res = await fetch('public/data/university2.json');
+                    const json = await res.json();
+                    data = { data: json.university.placements };
+                } else {
+                    const response = await fetch(`${API_BASE}/universities/${UNI_ID}/placements`);
+                    data = await response.json();
+                }
 
                 const container = document.getElementById('recruitersContainer');
                 container.innerHTML = data.data.topRecruiters.map(recruiter => `
@@ -1007,8 +1030,20 @@
             modal.style.display = 'block';
 
             try {
-                const response = await fetch(`${API_BASE}/universities/${UNI_ID}/fees`);
-                const data = await response.json();
+                let data;
+                if (IS_STATIC) {
+                    const res = await fetch('public/data/university2.json');
+                    const json = await res.json();
+                    data = { data: json.university.courses.map(c => ({
+                        name: c.name,
+                        duration: c.duration,
+                        feeRange: `₹${c.fees.min.toLocaleString()} - ₹${c.fees.max.toLocaleString()} / year`,
+                        fourYearTotal: c.duration.includes('4') ? '₹' + ((c.fees.min*4).toLocaleString()) + ' - ₹' + ((c.fees.max*4).toLocaleString()) + ' (Approx)' : '—'
+                    })) };
+                } else {
+                    const response = await fetch(`${API_BASE}/universities/${UNI_ID}/fees`);
+                    data = await response.json();
+                }
 
                 body.innerHTML = data.data.map(course => `
                     <div class="fee-item">
@@ -1056,42 +1091,35 @@
                 consent: document.getElementById('consent').checked
             };
 
+            const alertContainer = document.getElementById('alertContainer');
+            if (IS_STATIC) {
+                console.log('Simulated submit (static):', formData);
+                alertContainer.innerHTML = `
+                    <div class="alert alert-success">✓ Application submitted successfully! (Simulated)</div>
+                `;
+                document.getElementById('leadForm').reset();
+                setTimeout(() => alertContainer.innerHTML = '', 5000);
+                return;
+            }
+
             try {
                 const response = await fetch(`${API_BASE}/leads/submit`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formData)
                 });
 
                 const result = await response.json();
-                const alertContainer = document.getElementById('alertContainer');
-
                 if (result.success) {
-                    alertContainer.innerHTML = `
-                        <div class="alert alert-success">
-                            ✓ ${result.message}
-                        </div>
-                    `;
+                    alertContainer.innerHTML = `<div class="alert alert-success">✓ ${result.message}</div>`;
                     document.getElementById('leadForm').reset();
-                    setTimeout(() => {
-                        alertContainer.innerHTML = '';
-                    }, 5000);
+                    setTimeout(() => { alertContainer.innerHTML = ''; }, 5000);
                 } else {
-                    alertContainer.innerHTML = `
-                        <div class="alert alert-error">
-                            ✗ ${result.message}
-                        </div>
-                    `;
+                    alertContainer.innerHTML = `<div class="alert alert-error">✗ ${result.message}</div>`;
                 }
             } catch (error) {
                 console.error('Error submitting form:', error);
-                document.getElementById('alertContainer').innerHTML = `
-                    <div class="alert alert-error">
-                        ✗ Error submitting form. Please try again.
-                    </div>
-                `;
+                alertContainer.innerHTML = `<div class="alert alert-error">✗ Error submitting form. Please try again.</div>`;
             }
         }
 
