@@ -934,10 +934,17 @@
     </footer>
 
     <script>
-        // Detect static hosting (GitHub Pages) and set API base / fallbacks
-        const IS_STATIC = location.hostname.endsWith('github.io');
+        // Detect static hosting (file://, GitHub Pages) and set API base / fallbacks
+        // Treat non-localhost hosts as static; prefer API but always fallback to local JSON
+        const IS_STATIC = location.protocol === 'file:' || location.hostname.endsWith('github.io');
         const API_BASE = IS_STATIC ? '' : '/api';
         const UNI_ID = 'ashoka';
+
+        async function getLocalJson() {
+            const res = await fetch('data/university2.json');
+            if (!res.ok) throw new Error('Local JSON not found');
+            return res.json();
+        }
 
         // Load initial data
         document.addEventListener('DOMContentLoaded', async () => {
@@ -951,13 +958,15 @@
         async function loadCourses() {
             try {
                 let data;
-                if (IS_STATIC) {
-                    const res = await fetch('public/data/university2.json');
-                    const json = await res.json();
+                if (!IS_STATIC) {
+                    try {
+                        const response = await fetch(`${API_BASE}/universities/${UNI_ID}/courses`);
+                        if (response.ok) data = await response.json();
+                    } catch (_) { /* fall back below */ }
+                }
+                if (!data) {
+                    const json = await getLocalJson();
                     data = { data: json.university.courses };
-                } else {
-                    const response = await fetch(`${API_BASE}/universities/${UNI_ID}/courses`);
-                    data = await response.json();
                 }
 
                 const container = document.getElementById('coursesContainer');
@@ -979,13 +988,15 @@
         async function loadFacilities() {
             try {
                 let data;
-                if (IS_STATIC) {
-                    const res = await fetch('public/data/university2.json');
-                    const json = await res.json();
+                if (!IS_STATIC) {
+                    try {
+                        const response = await fetch(`${API_BASE}/universities/${UNI_ID}/facilities`);
+                        if (response.ok) data = await response.json();
+                    } catch (_) { /* fall back below */ }
+                }
+                if (!data) {
+                    const json = await getLocalJson();
                     data = { data: json.university.facilities };
-                } else {
-                    const response = await fetch(`${API_BASE}/universities/${UNI_ID}/facilities`);
-                    data = await response.json();
                 }
 
                 const container = document.getElementById('facilitiesContainer');
@@ -1004,13 +1015,15 @@
         async function loadPlacementData() {
             try {
                 let data;
-                if (IS_STATIC) {
-                    const res = await fetch('public/data/university2.json');
-                    const json = await res.json();
+                if (!IS_STATIC) {
+                    try {
+                        const response = await fetch(`${API_BASE}/universities/${UNI_ID}/placements`);
+                        if (response.ok) data = await response.json();
+                    } catch (_) { /* fall back below */ }
+                }
+                if (!data) {
+                    const json = await getLocalJson();
                     data = { data: json.university.placements };
-                } else {
-                    const response = await fetch(`${API_BASE}/universities/${UNI_ID}/placements`);
-                    data = await response.json();
                 }
 
                 const container = document.getElementById('recruitersContainer');
@@ -1031,18 +1044,23 @@
 
             try {
                 let data;
-                if (IS_STATIC) {
-                    const res = await fetch('public/data/university2.json');
-                    const json = await res.json();
+                if (!IS_STATIC) {
+                    try {
+                        const response = await fetch(`${API_BASE}/universities/${UNI_ID}/fees`);
+                        if (response.ok) data = await response.json();
+                    } catch (_) { /* fall back below */ }
+                }
+                if (!data) {
+                    const json = await getLocalJson();
                     data = { data: json.university.courses.map(c => ({
                         name: c.name,
                         duration: c.duration,
                         feeRange: `₹${c.fees.min.toLocaleString()} - ₹${c.fees.max.toLocaleString()} / year`,
-                        fourYearTotal: c.duration.includes('4') ? '₹' + ((c.fees.min*4).toLocaleString()) + ' - ₹' + ((c.fees.max*4).toLocaleString()) + ' (Approx)' : '—'
+                        fourYearTotal: /\b(\d+)\b/.test(c.duration) ? (() => {
+                            const years = parseInt((c.duration.match(/\b(\d+)\b/)||[])[1]||'0',10) || 0;
+                            return years ? `₹${(c.fees.min * years).toLocaleString()} - ₹${(c.fees.max * years).toLocaleString()} (Approx)` : '—';
+                        })() : '—'
                     })) };
-                } else {
-                    const response = await fetch(`${API_BASE}/universities/${UNI_ID}/fees`);
-                    data = await response.json();
                 }
 
                 body.innerHTML = data.data.map(course => `
